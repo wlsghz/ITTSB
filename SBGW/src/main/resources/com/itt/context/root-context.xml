@@ -7,4 +7,5 @@
 		
 	<import resource="classpath:com/itt/context/dataSource-context.xml"/>
 	<import resource="classpath:com/itt/context/security-context.xml"/>
+	<import resource="classpath:com/itt/context/application-context.xml"/>
 </beans>

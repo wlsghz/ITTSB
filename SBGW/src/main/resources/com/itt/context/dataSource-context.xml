@@ -12,5 +12,17 @@
 	p:username="CE1261043"
 	p:password="wlfkfak33"
 	/>
-
+	
+	<bean id="sqlSessionFactory"
+		class="org.mybatis.spring.SqlSessionFactoryBean"
+		p:dataSource-ref="dataSource"
+		p:configLocation="classpath:mybatis/sqlConfig.xml"
+		p:mapperLocations="classpath:mybatis/*-Mapper.xml"
+		/>
+		
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionTemplate"
+		c:sqlSessionFactory-ref="sqlSessionFactory"
+	/>
+		
 </beans>

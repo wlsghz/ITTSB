@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="Member">
+	
+	<select id="selectMemberList" resultType="member">
+		select * from memview
+	</select>
+	<select id="selectMemberBymNum" resultType="member">
+		select * from memview
+		where mNum=#{mNum}
+	</select>
+	<update id="insertMember">
+		insert into memview(mnum,mpwd,lvname,enabled)
+		values(#{mnum},#{mpwd},#{memlevel_seq.nextval},#{enabled})		
+	</update>
+	<update id="updateMember">
+		update memview set
+		mpwd=#{mpwd},lvname=#{lvname},enabled=#{enabled}
+		where mnum=#{mnum}
+	</update>
+	<update id="deleteMember">
+		delete from memview
+		where mnum=#{mnum}	
+	</update>	
+</mapper>
+
+
+
+
+
+
+	

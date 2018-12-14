@@ -26,11 +26,40 @@
 		</authentication-provider>
 	</authentication-manager>
 
-	<http pattern="/**" use-expressions="true" auto-config="true" 
+	<http pattern="/**" use-expressions="true"  
 	authentication-manager-ref="memberAuthManager">
+	<intercept-url pattern="/favicon.ico" access="permitAll" />
+	<intercept-url pattern="/comes/log*" access="permitAll"/>
+	<intercept-url pattern="/**" access="hasAuthority('1')"/>
 	
-	<intercept-url pattern="/" access="hasAuthority('1')"/>
+	<form-login
+	login-page="/comes/loginForm"
+	login-processing-url="/comes/login44"
+	username-parameter="id"
+	password-parameter="pwd"
+	authentication-success-handler-ref="logins"
+	authentication-failure-handler-ref="loginf"
+	default-target-url="/member/list"
+	always-use-default-target="true"
+	/>
+	<logout
+	logout-url="/comes/logout"
+	invalidate-session="true"
+	logout-success-url="/comes/loginForm"
+	/>
 	</http>
+	<beans:bean id="logins"
+				class="com.itt.security.LoginSuccessHandler"
+				p:alwaysUseDefaultTargetUrl="true"
+				p:defaultTargetUrl="/bj1"
+				/>
+	<beans:bean id="loginf"
+				class="com.itt.security.LoginFailHandler"
+				p:defaultFailureUrl="/comes/loginForm"
+				/>
+	
+	
+		
 
 	
 
